@@ -10,3 +10,13 @@
 <p>Category: <%= @product.category.name %></p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> | <%= link_to 'Back', products_path %>
+
+<h3>Comment:</h3>
+
+<%= form_for([@product, @comment]) do |c| %>
+  <%= tag(:input, type: "hidden", name: 'product_id', value: @product.id) %>
+  <%= c.text_area :comment %>
+  <%= c.submit %>
+<% end %>
+
+<%= render partial: 'prod_comment' %>

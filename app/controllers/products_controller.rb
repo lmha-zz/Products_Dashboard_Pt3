@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :delete]
   before_action :set_categories, only: [:new, :edit]
+  before_action :set_prod_comments, only: [:show]
 
   def index
     @products = Product.all
@@ -21,6 +22,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @comment = @product.comments.build
   end
 
   def edit
@@ -46,6 +48,9 @@ class ProductsController < ApplicationController
   end
   def set_categories
     @categories = Category.all
+  end
+  def set_prod_comments
+    @prod_comments = Product.find(params[:id]).comments.order('created_at desc')
   end
   def product_params
     params.require(:product).permit(:name, :description, :price, :category_id)

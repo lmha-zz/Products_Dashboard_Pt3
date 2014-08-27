@@ -1,0 +1,19 @@
+<% content_for :title do %>
+  All comments
+<% end %>
+
+<h1>All Comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Product</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @comments %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', products_path %>

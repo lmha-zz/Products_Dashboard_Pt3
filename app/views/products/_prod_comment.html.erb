@@ -1,0 +1,3 @@
+<% @prod_comments.each do |comment| %>
+  <p class="comments">"<%= comment.comment %>" - <%= comment.created_at.strftime('%m/%d/%Y') %></p>
+<% end %>
