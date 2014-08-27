@@ -1,0 +1,11 @@
+<% content_for :title do %>
+  Product <%= @product.id %> Info
+<% end %>
+
+<h1>Showing information for Product <%= @product.id %></h1>
+
+<p>Name: <%= @product.name %></p>
+<p>Description: <%= @product.description %></p>
+<p>Price: $<%= number_with_precision @product.price, precision: 2 %></p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> | <%= link_to 'Back', products_path %>

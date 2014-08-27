@@ -1,0 +1,15 @@
+<% content_for :title do %>
+  Edit product <%= @product.id %>
+<% end %>
+
+<h1>Editing product (<%= @product.name %>)</h1>
+
+<% if !flash[:errors].nil? %>
+  <% flash[:errors].each do |error| %>
+  <p class="errors"><%= error %></p>
+  <% end %>
+<% end %>
+
+<%= render partial: 'form' %>
+
+<%= link_to 'Show', product_path(@product) %> | <%= link_to 'Back', products_path %>
