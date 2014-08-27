@@ -1,9 +1,11 @@
 <%= form_for(@product) do |p| %>
+  <%= p.label :category_id,"Category:" %>
+  <%= p.select :category_id, options_from_collection_for_select(@categories, 'id', 'name', @product.category_id)  %><br>
   <%= p.label :name, 'Name:' %>
   <%= p.text_field :name %><br>
   <%= p.label :description, 'Description:' %>
   <%= p.text_area :description %><br>
   <%= p.label :price, 'Price:' %>
-  <%= p.number_field :price %><br>
+  <%= p.number_field :price, min: 0.01, step: 0.01 %><br>
   <%= p.submit %>
 <% end %>

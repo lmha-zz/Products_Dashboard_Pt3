@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :delete]
+  before_action :set_categories, only: [:new, :edit]
 
   def index
     @products = Product.all
@@ -10,8 +11,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
-    if product.save
+    @product = Product.new(product_params)
+    if @product.save
       redirect_to products_path
     else
       flash[:errors] = product.errors.full_messages
@@ -34,14 +35,19 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy
+  def delete
+    @product.destroy
+    redirect_to products_path
   end
 
   private
   def set_product
     @product = Product.find(params[:id])
   end
+  def set_categories
+    @categories = Category.all
+  end
   def product_params
-    params.require(:product).permit(:name, :description, :price)
+    params.require(:product).permit(:name, :description, :price, :category_id)
   end
 end

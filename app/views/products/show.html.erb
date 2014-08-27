@@ -7,5 +7,6 @@
 <p>Name: <%= @product.name %></p>
 <p>Description: <%= @product.description %></p>
 <p>Price: $<%= number_with_precision @product.price, precision: 2 %></p>
+<p>Category: <%= @product.category.name %></p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> | <%= link_to 'Back', products_path %>
